@@ -1,0 +1,7 @@
+body{font-family:Arial,Helvetica,sans-serif;background:#f7f7f7;margin:0;padding:20px}
+.container{max-width:900px;margin:0 auto;background:#fff;padding:20px;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.07)}
+form{display:flex;gap:8px;margin-bottom:12px}
+form input{padding:8px;flex:1}
+table{width:100%;border-collapse:collapse}
+th,td{padding:8px;border-bottom:1px solid #eee;text-align:left}
+button{padding:8px 12px}

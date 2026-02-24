@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student Management</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Students</h1>
+    <form id="studentForm">
+      <input type="hidden" id="studentId">
+      <input id="name" placeholder="Name" required>
+      <input id="email" placeholder="Email">
+      <input id="age" type="number" placeholder="Age">
+      <button type="submit">Save</button>
+      <button type="button" id="resetBtn">Reset</button>
+    </form>
+
+    <input id="search" placeholder="Search by name...">
+    <table id="studentsTable">
+      <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Age</th><th>Actions</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
