@@ -33,11 +33,5 @@
   ],
   "env": {
     "NODE_ENV": "production"
-  },
-  "functions": {
-    "api/**/*.js": {
-      "memory": 512,
-      "maxDuration": 30
-    }
   }
 }
