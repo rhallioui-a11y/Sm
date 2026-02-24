@@ -3,26 +3,123 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Student Management</title>
+  <title>Student Management System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    * {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
 </head>
-<body>
-  <div class="container">
-    <h1>Students</h1>
-    <form id="studentForm">
-      <input type="hidden" id="studentId">
-      <input id="name" placeholder="Name" required>
-      <input id="email" placeholder="Email">
-      <input id="age" type="number" placeholder="Age">
-      <button type="submit">Save</button>
-      <button type="button" id="resetBtn">Reset</button>
-    </form>
+<body class="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen py-8 px-4">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-4xl font-bold text-slate-900 mb-2">Student Management System</h1>
+          <p class="text-slate-600">Manage your students efficiently and securely</p>
+        </div>
+        <div class="hidden md:block">
+          <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg shadow-lg"></div>
+        </div>
+      </div>
+    </div>
 
-    <input id="search" placeholder="Search by name...">
-    <table id="studentsTable">
-      <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Age</th><th>Actions</th></tr></thead>
-      <tbody></tbody>
-    </table>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Form Section -->
+      <div class="lg:col-span-1">
+        <div class="bg-white rounded-xl shadow-md p-6 sticky top-4">
+          <h2 class="text-xl font-bold text-slate-900 mb-4">Add/Edit Student</h2>
+          
+          <form id="studentForm" class="space-y-4">
+            <input type="hidden" id="studentId">
+            
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-1">Full Name *</label>
+              <input 
+                id="name" 
+                placeholder="Enter student name" 
+                required
+                class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+              >
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-1">Email</label>
+              <input 
+                id="email" 
+                type="email"
+                placeholder="Enter email address" 
+                class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+              >
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-1">Age</label>
+              <input 
+                id="age" 
+                type="number" 
+                placeholder="Enter age" 
+                class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+              >
+            </div>
+
+            <div class="flex gap-2 pt-4">
+              <button 
+                type="submit"
+                class="flex-1 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition shadow-md"
+              >
+                Save Student
+              </button>
+              <button 
+                type="button" 
+                id="resetBtn"
+                class="flex-1 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold py-2 px-4 rounded-lg transition"
+              >
+                Reset
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Table Section -->
+      <div class="lg:col-span-2">
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <div class="mb-6">
+            <div class="relative">
+              <input 
+                id="search" 
+                placeholder="Search students by name..." 
+                class="w-full px-4 py-3 pl-11 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+              >
+              <svg class="absolute left-3 top-3.5 w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table id="studentsTable" class="w-full">
+              <thead>
+                <tr class="border-b-2 border-slate-200">
+                  <th class="px-6 py-3 text-left text-sm font-semibold text-slate-900">ID</th>
+                  <th class="px-6 py-3 text-left text-sm font-semibold text-slate-900">Name</th>
+                  <th class="px-6 py-3 text-left text-sm font-semibold text-slate-900">Email</th>
+                  <th class="px-6 py-3 text-left text-sm font-semibold text-slate-900">Age</th>
+                  <th class="px-6 py-3 text-left text-sm font-semibold text-slate-900">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="app.js"></script>
