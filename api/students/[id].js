@@ -1,5 +1,25 @@
 const { getQuery, runQuery } = require('../db');
 
+// Parse JSON body
+async function parseBody(req) {
+  if (req.body) return req.body;
+  
+  return new Promise((resolve, reject) => {
+    let body = '';
+    req.on('data', chunk => {
+      body += chunk.toString();
+    });
+    req.on('end', () => {
+      try {
+        resolve(body ? JSON.parse(body) : {});
+      } catch (e) {
+        reject(new Error('Invalid JSON body'));
+      }
+    });
+    req.on('error', reject);
+  });
+}
+
 module.exports = async (req, res) => {
   // Enable CORS
   res.setHeader('Access-Control-Allow-Credentials', 'true');
@@ -27,11 +47,15 @@ module.exports = async (req, res) => {
         return res.status(404).json({ error: 'Student not found' });
       }
       
+      console.log('GET /students/:id - Retrieved student:', student);
       res.status(200).json(student);
     } 
     else if (req.method === 'PUT') {
       // Update student
-      const { name, email, age } = req.body;
+      const body = await parseBody(req);
+      const { name, email, age } = body;
+
+      console.log('PUT /students/:id - Updating student:', id, { name, email, age });
 
       if (!name) {
         return res.status(400).json({ error: 'Name is required' });
@@ -46,23 +70,27 @@ module.exports = async (req, res) => {
         return res.status(404).json({ error: 'Student not found' });
       }
 
+      console.log('PUT /students/:id - Updated successfully');
       res.status(200).json({ id: parseInt(id), name, email: email || null, age: age || null });
     } 
     else if (req.method === 'DELETE') {
       // Delete student
+      console.log('DELETE /students/:id - Deleting student:', id);
+      
       const result = await runQuery('DELETE FROM students WHERE id = ?', [id]);
 
       if (result.changes === 0) {
         return res.status(404).json({ error: 'Student not found' });
       }
 
+      console.log('DELETE /students/:id - Deleted successfully');
       res.status(200).json({ deleted: id });
     } 
     else {
       res.status(405).json({ error: 'Method not allowed' });
     }
   } catch (error) {
-    console.error(error);
+    console.error('ERROR:', error);
     res.status(500).json({ error: error.message });
   }
 };

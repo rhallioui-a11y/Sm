@@ -1,14 +1,9 @@
-/* Professional Styling with Animations */
+/* Professional Styling */
 
 /* Smooth transitions */
 * {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Dark mode persistence */
-html.dark {
-  color-scheme: dark;
 }
 
 /* Input focus enhancement */
@@ -29,10 +24,6 @@ table tbody tr {
 
 table tbody tr:hover {
   background-color: #f0f9ff;
-}
-
-html.dark table tbody tr:hover {
-  background-color: #0f172a;
 }
 
 /* Button animations */
@@ -66,7 +57,6 @@ button:hover::before {
   cursor: pointer;
   transition: all 0.2s ease;
   margin-right: 0.25rem;
-  position: relative;
 }
 
 .edit {
@@ -76,7 +66,7 @@ button:hover::before {
 
 .edit:hover {
   background-color: #2563eb;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   box-shadow: 0 4px 6px rgba(37, 99, 235, 0.3);
 }
 
@@ -87,144 +77,22 @@ button:hover::before {
 
 .del:hover {
   background-color: #dc2626;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   box-shadow: 0 4px 6px rgba(220, 38, 38, 0.3);
 }
 
-/* Toast Notifications */
-.toast {
-  animation: slideInRight 0.3s ease-out forwards;
-  min-width: 300px;
-  padding: 1rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  color: white;
-  font-weight: 500;
+/* Empty state message */
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: #9ca3af;
 }
 
-.toast.success {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-}
-
-.toast.error {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-}
-
-.toast.info {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(400px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideOutRight {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(400px);
-  }
-}
-
-.toast.fade-out {
-  animation: slideOutRight 0.3s ease-out forwards;
-}
-
-/* Loading spinner */
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-spin {
-  animation: spin 1s linear infinite;
-}
-
-/* Pulse animation for header logo */
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
-.animate-pulse {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Fade in animation for table rows */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-table tbody tr {
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-/* Skeleton loader */
-.skeleton {
-  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
-  background-size: 200% 100%;
-  animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
-
-html.dark .skeleton {
-  background: linear-gradient(90deg, #334155 25%, #475569 50%, #334155 75%);
-}
-
-/* Scale in animation */
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.scale-in {
-  animation: scaleIn 0.2s ease-out;
-}
-
-/* Smooth card transitions */
-.card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+.empty-state svg {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto 1rem;
+  opacity: 0.5;
 }
 
 /* Responsive adjustments */
@@ -232,11 +100,21 @@ html.dark .skeleton {
   .sticky {
     position: relative !important;
   }
+}
 
-  .toast {
-    min-width: calc(100vw - 2rem);
-    max-width: 300px;
+/* Animation for new rows */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+table tbody tr {
+  animation: slideIn 0.3s ease;
+}
 
